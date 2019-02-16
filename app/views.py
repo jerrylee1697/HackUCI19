@@ -6,7 +6,6 @@ from flask import render_template, request, redirect, url_for, session
 
 app.secret_key = 'secretkey'
 
-
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -95,4 +94,7 @@ def ensure_pages_dir_exists():
 
 
 def is_valid_login(email, password):
-    return 1
+    if email == 'admin@barr.io' and password == '123':
+        return True
+    else:
+        return False
