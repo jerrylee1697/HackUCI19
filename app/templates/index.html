@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Barr.io :: Home{% endblock %}
+
+{% block body %}
+<div class="jumbotron bg-light text-dark">
+    <img src="{{url_for('static', filename='img/logo.png')}}" width="20%" height="20%" />
+    <div class="clearfix", style="margin-top: 25px"></div>
+    <h2>Sharpen Your Dev Skills.</h2>
+    <p class="lead">Barr.io is a platform to help developers gain experience by working on real company projects.</p>
+</div>
+
+<div class="card-group">
+    <div class="card">
+      <!-- <img class="card-img-top" src="{{url_for('static', filename='img/al.jpeg')}}"> -->
+      <div class="card-body">
+        <h5 class="card-title">Ardent Labs</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <button type="button" class="btn btn-outline-primary">Explore</button>
+      </div>
+    </div>
+    <div class="card">
+      <!-- <img class="card-img-top" src="{{url_for('static', filename='img/g.png')}}"> -->
+      <div class="card-body">
+        <h5 class="card-title">Google</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <button type="button" class="btn btn-outline-primary">Explore</button>
+      </div>
+    </div>
+    <div class="card">
+      <!-- <img class="card-img-top" src="{{url_for('static', filename='img/fb.png')}}"> -->
+      <div class="card-body">
+        <h5 class="card-title">Facebook</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <button type="button" class="btn btn-outline-primary">Explore</button>
+        </div>
+    </div>
+{% endblock %}
