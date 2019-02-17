@@ -55,7 +55,7 @@ BSD - See [LICENSE][license] file
 ---
 <div class="jumbotron jumbotron-fluid bg-light text-dark">
   <div class="container">
-    <form method = "post">
+    <form action="{{ url_for('sendemail') }}" method = "post">
         <div class="row">
             <div class="col">
             <input type="text" id="name" name="name" class="form-control" placeholder="Name">
