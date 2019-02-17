@@ -31,7 +31,7 @@ Google LLC is an American multinational technology company that specializes in I
       <small class="text-muted">Python</small>
     </div>
     <p class="mb-1">JAX is Autograd and XLA, brought together for high-performance machine learning research.</p>
-    <small class="text-muted">What’s new is that JAX uses XLA to compile and run your NumPy programs on GPUs and TPUs. </small>
+    <small class="text-muted">What's new is that JAX uses XLA to compile and run your NumPy programs on GPUs and TPUs. </small>
   </a>
   <a href="Oboe(Google)" class="list-group-item list-group-item-action">
     <div class="d-flex w-100 justify-content-between">
