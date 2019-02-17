@@ -98,3 +98,16 @@ def is_valid_login(email, password):
         return True
     else:
         return False
+
+@app.route('/pages/Gocmp', methods = ['POST', 'GET'])
+def sendemail():
+    if request.method == 'POST':
+        user = request.form['name']
+        print(user)
+        return render_template('/pages/Gocmp')
+    
+    # return redirect(url_for('pages'))
+    else:
+        user = request.args.get('name')
+        return 1
+    return 0

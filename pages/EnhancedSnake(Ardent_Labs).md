@@ -1,7 +1,3 @@
-JavaScript and React Native Bootcamp :rocket:
-
-=============================================
-
 
 
 # EnhancedSnake for JavaScript & React Native Boot Camp

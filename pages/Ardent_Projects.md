@@ -24,7 +24,7 @@ ___
     <p class="mb-1">This project relies on react-native-simple-radio-button and react-navigation.</p>
     <small>This app is intentionally left incomplete.</small>
   </a>
-  <a href="BootCamp2017" class="list-group-item list-group-item-action">
+  <a href="BootCamp2017(Ardent_Labs)" class="list-group-item list-group-item-action">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">Boot Camp 2017</h5>
       <small class="text-muted">JavaScript and React Native</small>
@@ -32,7 +32,7 @@ ___
     <p class="mb-1">This will be a rigorous course; learning the course material takes far more time than we have in class.</p>
     <small class="text-muted">Ardent Academy's JavaScript & React Native Boot Camp!</small>
   </a>
-  <a href="EnhancedSnake" class="list-group-item list-group-item-action">
+  <a href="EnhancedSnake(Ardent_Labs)" class="list-group-item list-group-item-action">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">Enhanced Snake</h5>
       <small class="text-muted">JavaScript and React Native</small>
