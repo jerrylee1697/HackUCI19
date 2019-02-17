@@ -2,7 +2,7 @@
 FROM python:3.6-alpine3.6
 
 #Installing all python modules specified
-ADD requirements.txt requirements.txt
+ADD requirements.txt
 RUN pip install -r requirements.txt
 
 #Copy App Contents
