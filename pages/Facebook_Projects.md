@@ -22,7 +22,7 @@ Facebook, Inc. is an American online social media and social networking service 
       <h5 class="mb-1">Prop-Types</h5>
       <small class="text-muted">JavaScript</small>
     </div>
-    <p class="mb-1">You can use prop-types to document the intended types of properties passed to components. React (and potentially other libraries—see the checkPropTypes() reference below) will check props passed to your components against those definitions, and warn in development if they don’t match.</p>
+    <p class="mb-1">You can use prop-types to document the intended types of properties passed to components. </p>
     <small class="text-muted">Runtime type checking for React props and similar objects.</small>
   </a>
   <a href="Flow(Facebook)" class="list-group-item list-group-item-action">

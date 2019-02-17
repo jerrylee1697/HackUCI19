@@ -18,7 +18,7 @@ derivatives. It supports reverse-mode differentiation (a.k.a. backpropagation)
 via [`grad`](#automatic-differentiation-with-grad) as well as forward-mode differentiation,
 and the two can be composed arbitrarily to any order.
 
-What’s new is that JAX uses
+What   new is that JAX uses
 [XLA](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/compiler/xla/g3doc/overview.md)
 to compile and run your NumPy programs on GPUs and TPUs. Compilation happens
 under the hood by default, with library calls getting just-in-time compiled and
@@ -71,7 +71,7 @@ open](https://github.com/google/jax) by a growing number of
 * [Running the tests](#running-the-tests)
 * [Reference documentation](#reference-documentation)
 * [A brief tour](#a-brief-tour)
-* [What's supported](#whats-supported)
+* [What   supported](#whats-supported)
 * [Transformations](#transformations)
 * [Random numbers are different](#random-numbers-are-different)
 * [Mini-libraries](#mini-libraries)
@@ -185,7 +185,7 @@ JAX_NUM_GENERATED_CASES=100 nosetests tests
 ```
 
 You can run a more specific set of tests using
-[`nose`](https://nose.readthedocs.io/en/latest/usage.html)'s built-in selection
+[`nose`](https://nose.readthedocs.io/en/latest/usage.html)   built-in selection
 mechanisms, or alternatively you can run a specific test file directly to see
 more detailed information about the cases being run:
 
@@ -216,19 +216,7 @@ In [6]: print(np.dot(x, x.T) / 2)  # even faster!
 [[  2.52727051e+03   8.15895557e+00  -8.53276134e-01 ...,  # ...
 ```
 
-What’s happening behind-the-scenes is that JAX is using XLA to just-in-time
-(JIT) compile and execute these individual operations on the GPU. First the
-`random.normal` call is compiled and the array referred to by `x` is generated
-on the GPU. Next, each function called on `x` (namely `transpose`, `dot`, and
-`divide`) is individually JIT-compiled and executed, each keeping its results on
-the device.
-It’s only when a value needs to be printed, plotted, saved, or passed into a raw
-NumPy function that a read-only copy of the value is brought back to the host as
-an ndarray and cached. The second call to `dot` is faster because the
-JIT-compiled code is cached and reused, saving the compilation time.
-
-The fun really starts when you use `grad` for automatic differentiation and
-`jit` to compile your own functions end-to-end. Here’s a more complete toy
+happening e complete toy
 example:
 
 ```python
@@ -274,11 +262,11 @@ example](https://github.com/google/jax/blob/master/examples/mnist_classifier.py)
 and the rest of the [JAX
 examples](https://github.com/google/jax/blob/master/examples/).
 
-## What's supported
+## What   supported
 
-If you’re using JAX just as an accelerator-backed NumPy, without using `grad` or
+I just as an accelerator-backed NumPy, without using `grad` or
 `jit` in your code, then in principle there are no constraints, though some
-NumPy functions haven’t been implemented yet. A list of supported functions can
+NumPy ented yet. A list of supported functions can
 be found in the [reference documentation](https://jax.readthedocs.io/).
 
 Generally using `np.dot(A, B)` is
@@ -295,15 +283,7 @@ x`) or indexed in-place updating (`A[i] += b`). You can use lists, tuples, and
 dicts freely: JAX doesn't even see them. Using `np.dot(A, B)` rather than
 `A.dot(B)` is required for automatic differentiation when `A` is a raw ndarray.
 
-For compiling your own functions with `jit` there are a few more requirements.
-Because `jit` aims to specialize Python functions only on shapes and dtypes
-during tracing, rather than on concrete values, Python control flow that depends
-on concrete values won’t be able to execute and will instead raise an error. If
-you want compiled control flow, use structured control flow primitives like
-lax.cond and lax.while. Some indexing features, like slice-based indexing
-`A[i:i+5]` for argument-dependent `i`, or boolean-based indexing `A[bool_ind]`
-for argument-dependent `bool_ind`, produce abstract values of unknown shape and
-are thus unsupported in `jit` functions.
+
 
 In general, JAX is intended to be used with a functional style of Python
 programming. Functions passed to transformations like `grad` and `jit` are
@@ -313,13 +293,12 @@ debugging but they may only be executed once if they're under a `jit` decorator.
 > TLDR **Do use**
 >
 > *   Functional programming
-> *   [Many](https://jax.readthedocs.io/en/latest/jax.numpy.html) of NumPy’s
 >     functions (help us add more!)
 > *   [Some](https://jax.readthedocs.io/en/latest/jax.scipy.html) SciPy functions
 > *   Indexing and slicing of arrays like `x = A[[5, 1, 7], :, 2:4]`
 > *   Explicit array creation from lists like `A = np.array([x, y])`
 >
-> **Don’t use**
+> **Do not use**
 >
 > *   Assignment into arrays like `A[0, 0] = x`
 > *   Implicit casting to arrays like `np.sum([x, y])` (use `np.sum(np.array([x,
@@ -331,7 +310,7 @@ debugging but they may only be executed once if they're under a `jit` decorator.
 > *   Dtype casting like `np.float64(x)` (use `x.astype('float64')` or
 >     `x.astype(np.float64)` instead).
 >
-> **For jit functions, also don’t use**
+> **For jit functions, do not**
 >
 > *   Control flow based on dynamic values `if x > 0: ...`. Control flow based
 >     on shapes is fine: `if x.shape[0] > 2: ...` and `for subarr in array`.
@@ -368,7 +347,7 @@ You can differentiate to any order with `grad`.
 For more advanced autodiff, you can use `jax.vjp` for reverse-mode
 vector-Jacobian products and `jax.jvp` for forward-mode Jacobian-vector
 products. The two can be composed arbitrarily with one another, and with other
-JAX transformations. Here's one way to compose
+JAX transformations. Here   one way to compose
 those to make a function that efficiently computes full Hessian matrices:
 
 ```python
@@ -417,8 +396,7 @@ You can mix `jit` and `grad` and any other JAX transformation however you like.
 
 `vmap` is the vectorizing map.
 It has the familiar semantics of mapping a function along array axes, but
-instead of keeping the loop on the outside, it pushes the loop down into a
-function’s primitive operations for better performance.
+instead of keeping the loop on the out
 
 Using `vmap` can save you from having to carry around batch dimensions in your
 code. For example, consider this simple *unbatched* neural network prediction
@@ -433,19 +411,12 @@ def predict(params, input_vec):
   return output_vec
 ```
 
-We often instead write `np.dot(inputs, W)` to allow for a batch dimension on the
-left side of `inputs`, but we’ve written this particular prediction function to
-apply only to single input vectors. If we wanted to apply this function to a
-batch of inputs at once, semantically we could just write
 
 ```python
 from functools import partial
 predictions = np.stack(list(map(partial(predict, params), input_batch)))
 ```
 
-But pushing one example through the network at a time would be slow! It’s better
-to vectorize the computation, so that at every layer we’re doing matrix-matrix
-multiplies rather than matrix-vector multiplies.
 
 The `vmap` function does that transformation for us. That is, if we write
 
@@ -456,15 +427,6 @@ predictions = vmap(partial(predict, params))(input_batch)
 predictions = vmap(predict, in_axes=(None, 0))(params, input_batch)
 ```
 
-then the `vmap` function will push the outer loop inside the function, and our
-machine will end up executing matrix-matrix multiplications exactly as if we’d
-done the batching by hand.
-
-It’s easy enough to manually batch a simple neural network without `vmap`, but
-in other cases manual vectorization can be impractical or impossible. Take the
-problem of efficiently computing per-example gradients: that is, for a fixed set
-of parameters, we want to compute the gradient of our loss function evaluated
-separately at each example in a batch. With `vmap`, it’s easy:
 
 ```python
 per_example_gradients = vmap(partial(grad(loss), params))(inputs, targets)
@@ -478,13 +440,6 @@ differentiation for fast Jacobian and Hessian matrix calculations in
 
 ## Random numbers are different
 
-JAX needs a [functional pseudo-random number generator (PRNG) system](design_notes/prng.md) to provide
-reproducible results invariant to compilation boundaries and backends, while
-also maximizing performance by enabling vectorized generation and
-parallelization across random calls. The `numpy.random` library doesn’t have
-those properties. The `jax.random` library meets those needs: it’s functionally
-pure, but it doesn’t require you to pass stateful random objects back out of
-every function.
 
 The `jax.random` library uses
 [count-based PRNGs](http://www.thesalmons.org/john/random123/papers/random123sc11.pdf)
@@ -524,9 +479,9 @@ By splitting the PRNG key, not only do we avoid having to thread random states
 back out of every function call, but also we can generate multiple random arrays
 in parallel because we can avoid unnecessary sequential dependencies.
 
-There's a gotcha here, which is that it's easy to unintentionally reuse a key
+Therea gotcha here, which is that it easy to unintentionally reuse a key
 without splitting. We intend to add a check for this (a sort of dynamic linear
-typing) but for now it's something to be careful about.
+typing) but for now it something to be careful about.
 
 For more detailed information on the design and the reasoning behind it, see the
 [PRNG design doc](design_notes/prng.md).
@@ -549,7 +504,7 @@ constructor functions for common basic pairs, like `Conv` and `Relu`, and these
 pairs can be composed in series using `stax.serial` or in parallel using
 `stax.parallel`.
 
-Here’s an example:
+ example:
 
 ```python
 import jax.numpy as np
@@ -582,9 +537,9 @@ optimizers. Every optimizer is modeled as an `(init_fun, update_fun)` pair. The
 like momentum variables, and the `update_fun` accepts a gradient and an
 optimizer state to produce a new optimizer state. The parameters being optimized
 can be ndarrays or arbitrarily-nested list/tuple/dict structures, so you can
-store your parameters however you’d like.
+store your parameters howev.
 
-Here’s an example, using `jit` to compile the whole update end-to-end:
+Heple, using `jit` to compile the whole update end-to-end:
 
 ```python
 from jax.experimental import optimizers
@@ -632,58 +587,12 @@ function.
 ![simplified-lifecycle](https://raw.githubusercontent.com/google/jax/master/images/lifecycle.png)
 
 JAX specializes Python functions by tracing. Tracing a function means monitoring
-all the basic operations that are applied to its input to produce its output,
-and recording these operations and the data-flow between them in a directed
-acyclic graph (DAG). To perform tracing, JAX wraps primitive operations, like
-basic numerical kernels, so that when they’re called they add themselves to a
-list of operations performed along with their inputs and outputs. To keep track
+all the basic  To keep track
 of how data flows between these primitives, values being tracked are wrapped in
 instances of the `Tracer` class.
 
-When a Python function is provided to `grad` or `jit`, it’s wrapped for tracing
-and returned. When the wrapped function is called, we abstract the concrete
-arguments provided into instances of the `AbstractValue` class, box them for
-tracing in instances of the `Tracer` class, and call the function on them.
-Abstract arguments represent sets of possible values rather than specific
-values: for example, `jit` abstracts ndarray arguments to abstract values that
-represent all ndarrays with the same shape and dtype. In contrast, `grad`
-abstracts ndarray arguments to represent an infinitesimal neighborhood of the
-underlying
-value. By tracing the Python function on these abstract values, we ensure that
-it’s specialized enough so that it’s tractable to transform, and that it’s still
-general enough so that the transformed result is useful, and possibly reusable.
-These transformed functions are then lifted back into Python callables in a way
-that allows them to be traced and transformed again as needed.
-
-The primitive functions that JAX traces are mostly in 1:1 correspondence with
-[XLA HLO](https://www.tensorflow.org/xla/operation_semantics) and are defined
-in [lax.py](https://github.com/google/jax/blob/master/jax/lax.py). This 1:1
-correspondence makes most of the translations to XLA essentially trivial, and
-ensures we only have a small set of primitives to cover for other
-transformations like automatic differentiation. The [`jax.numpy`
-layer](https://github.com/google/jax/blob/master/jax/numpy/) is written in pure
-Python simply by expressing NumPy functions in terms of the LAX functions (and
-other NumPy functions we’ve already written). That makes `jax.numpy` easy to
-extend.
-
-When you use `jax.numpy`, the underlying LAX primitives are `jit`-compiled
-behind the scenes, allowing you to write unrestricted Python+Numpy code while
-still executing each primitive operation on an accelerator.
-
-But JAX can do more: instead of just compiling and dispatching to a fixed set of
-individual primitives, you can use `jit` on larger and larger functions to be
-end-to-end compiled and optimized. For example, instead of just compiling and
-dispatching a convolution op, you can compile a whole network, or a whole
-gradient evaluation and optimizer update step.
-
-The tradeoff is that `jit` functions have to satisfy some additional
-specialization requirements: since we want to compile traces that are
-specialized on shapes and dtypes, but not specialized all the way to concrete
-values, the Python code under a `jit` decorator must be applicable to abstract
-values. If we try to evaluate `x > 0` on an abstract `x`, the result is an
-abstract value representing the set `{True, False}`, and so a Python branch like
-`if x > 0` will raise an error: it doesn’t know which way to go! 
-See [What’s supported](#whats-supported) for more
+When a Python function is provido go! 
+See for more
 information about `jit` requirements.
 
 The good news about this tradeoff is that `jit` is opt-in: JAX libraries use

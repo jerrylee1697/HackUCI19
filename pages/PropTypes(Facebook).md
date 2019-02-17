@@ -1,11 +1,7 @@
 # prop-types [![Build Status](https://travis-ci.com/facebook/prop-types.svg?branch=master)](https://travis-ci.org/facebook/prop-types)
 
 Runtime type checking for React props and similar objects.
-
-You can use prop-types to document the intended types of properties passed to
-components. React (and potentially other libraries—see the checkPropTypes()
-reference below) will check props passed to your components against those
-definitions, and warn in development if they don’t match.
+ match.
 
 ## Installation
 
@@ -189,7 +185,7 @@ For libraries, we *also* recommend leaving it in `dependencies`:
 
 Make sure that the version range uses a caret (`^`) and thus is broad enough for npm to efficiently deduplicate packages.
 
-For UMD bundles of your components, make sure you **don’t** include `PropTypes` in the build. Usually this is done by marking it as an external (the specifics depend on your bundler), just like you do with React.
+For UMD bundles of your components, make sure you  include `PropTypes` in the build. Usually this is done by marking it as an external (the specifics depend on your bundler), just like you do with React.
 
 ## Compatibility
 
@@ -212,9 +208,8 @@ npm install --save react@^15.3.0 react-dom@^15.3.0
 
 ### What happens on other React versions?
 
-It outputs warnings with the message below even though the developer doesn’t do anything wrong. Unfortunately there is no solution for this other than updating React to either 15.3.0 or higher, or 0.14.9 if you’re using React 0.14.
 
-## Difference from `React.PropTypes`: Don’t Call Validator Functions
+## Difference from `React.PropTypes`: D o notCall Validator Functions
 
 First of all, **which version of React are you using**? You might be seeing this message because a component library has updated to use `prop-types` package, but your version of React is incompatible with it. See the [above section](#compatibility) for more details.
 
@@ -246,7 +241,6 @@ Use PropTypes.checkPropTypes() to call them.
 
 (If you see **a warning** rather than an error with this message, please check the [above section about compatibility](#compatibility).)
 
-This is new behavior, and you will only encounter it when you migrate from `React.PropTypes` to the `prop-types` package. For the vast majority of components, this doesn’t matter, and if you didn’t see [this warning](https://facebook.github.io/react/warnings/dont-call-proptypes.html) in your components, your code is safe to migrate. This is not a breaking change in React because you are only opting into this change for a component by explicitly changing your imports to use `prop-types`. If you temporarily need the old behavior, you can keep using `React.PropTypes` until React 16.
 
 **If you absolutely need to trigger the validation manually**, call `PropTypes.checkPropTypes()`. Unlike the validators themselves, this function is safe to call in production, as it will be replaced by an empty function:
 
@@ -256,9 +250,6 @@ PropTypes.checkPropTypes(MyComponent.propTypes, props, 'prop', 'MyComponent');
 ```
 See below for more info.
 
-**You might also see this error** if you’re calling a `PropTypes` validator from your own custom `PropTypes` validator. In this case, the fix is to make sure that you are passing *all* of the arguments to the inner function. There is a more in-depth explanation of how to fix it [on this page](https://facebook.github.io/react/warnings/dont-call-proptypes.html#fixing-the-false-positive-in-third-party-proptypes). Alternatively, you can temporarily keep using `React.PropTypes` until React 16, as it would still only warn in this case.
-
-If you use a bundler like Browserify or Webpack, don’t forget to [follow these instructions](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build) to correctly bundle your application in development or production mode. Otherwise you’ll ship unnecessary code to your users.
 
 ## PropTypes.checkPropTypes
 
