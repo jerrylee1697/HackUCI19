@@ -1,6 +1,15 @@
-runtime: python
-env: flex
-entrypoint: gunicorn -b :$PORT run:app
+#Python's Alpine Base Image
+FROM python:3.6-alpine3.6
 
-runtime_config:
-    python_version: 3
+#Installing all python modules specified
+ADD requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+#Copy App Contents
+ADD . /app
+WORKDIR /app
+
+#Start Flask Server
+CMD [ "python","run.py"]
+#Expose server port
+EXPOSE 5000
