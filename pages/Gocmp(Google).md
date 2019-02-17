@@ -1,8 +1,3 @@
-JavaScript and React Native Bootcamp :rocket:
-
-=============================================
-
-
 
 # Package for equality of Go values
 
@@ -55,15 +50,15 @@ BSD - See [LICENSE][license] file
 ---
 <div class="jumbotron jumbotron-fluid bg-light text-dark">
   <div class="container">
-    <form action="{{ url_for('sendemail') }}" method = "post">
+    <form>
         <div class="row">
             <div class="col">
-            <input type="text" id="name" name="name" class="form-control" placeholder="Name">
+            <input type="text" class="form-control" placeholder="Name">
             </div>
         </div>
         <br>
         <div class="form-group">
-            <input type="email" id="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Comments (Optional):</label>
